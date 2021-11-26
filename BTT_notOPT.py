@@ -47,7 +47,7 @@ elif degree<10 :
 else :
     print(degree)
 
-cv2.imwrite('output/result.jpg',result)
+cv2.imwrite('output/00_frame.jpg',result)
 
 i = 0
 flag = False
@@ -89,4 +89,4 @@ for i in range(len(row)%3) :
     r = (row[2] - row[0])*0.5
 
 
-cv2.imwrite('output/dots.jpg',dots_line)
+cv2.imwrite('output/04_dots.jpg',dots_line)
