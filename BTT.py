@@ -32,6 +32,7 @@ you can change mode between debugging and optimizing mode
 import cv2
 import numpy as np
 import RPi.GPIO as GPIO
+import pyttsx3
 from unicode import join_jamos
 from braille_dict import braille_dict
 
@@ -43,6 +44,8 @@ GPIO.setup(21, GPIO.IN)   # power control pin, connect to right line 1st from bo
 # cam = cv2.VideoCapture(0)
 
 flag_power = False
+
+engine = pyttsx3.init()
 
 
 
@@ -247,6 +250,8 @@ try:
                 braille = img_to_braille(frame)
                 text = braille_to_text(braille)
                 print(text) ##debug##
+                engine.say(text)
+                engine.runAndWait()
                 while(GPIO.input(20)) : pass
         
         # run when power off
@@ -258,5 +263,6 @@ finally:
     print("cleanup")
     if flag_power : cam.release()
     GPIO.cleanup()
+    engine.stop()
 
 print("end") 
